@@ -5,19 +5,20 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     private bool isOpen = false;
-    private Animator doorAnimator = null;
     private AudioSource doorAudioSouce;
     [SerializeField] private AudioClip[] doorAudio;
     private BoxCollider _boxCollider;
     public Doors _currentDoor;
     [SerializeField] private GameObject ending;
+    [SerializeField] private GameObject _door;
 
-    public enum Doors { corridorDoor, basementDoor, UpperDoor, Other }
+    private Transform _doorTransform;
+
+    public enum Doors { whiteDoor,brownDoor,Other}
     private void Start()
     {
-        this.doorAnimator = this.GetComponent<Animator>();
         this.doorAudioSouce = this.GetComponent<AudioSource>();
-        this._boxCollider = this.GetComponent<BoxCollider>();
+        _doorTransform = this._door.GetComponent<Transform>();
     }
     public void ToggleDoor()
     {
@@ -28,16 +29,33 @@ public class Door : MonoBehaviour
             if (isOpen == true)
             {
                 this.doorAudioSouce.clip = doorAudio[0];
-                _boxCollider.isTrigger = true;
+               // _boxCollider.isTrigger = true;
+               OpenCloseDoor();
             }
             else
             {
                 this.doorAudioSouce.clip = doorAudio[1];
-                _boxCollider.isTrigger = false;
+                OpenCloseDoor();
+                //_boxCollider.isTrigger = false;
             };
             this.doorAudioSouce.Play();
-            doorAnimator.SetBool("IsDoorActive", isOpen);
+         //   doorAnimator.SetBool("IsDoorActive", isOpen);
         }
+    }
+
+    private void OpenCloseDoor()
+    {
+        if (isOpen)
+        {
+            Debug.Log("opening");
+            _doorTransform.Rotate(0,90f,0);
+        }
+        else
+        {
+            Debug.Log("Closing");
+            _doorTransform.Rotate(0,-90,0);
+        }
+
     }
     public bool CheckDoorLocked()
     {
@@ -46,7 +64,7 @@ public class Door : MonoBehaviour
             case Doors.Other:
                     return true;
         }
-        return false;
+        return true;
     }
 
 }

@@ -51,7 +51,13 @@ public class Player_Actions : MonoBehaviour
               //  MainCanvas_UI.Instance.Hide_Helper();
             }
             */
+           if (_hit.collider.gameObject.CompareTag("Door"))
+           {
+               
+               
+           }
         }
+        
     }
 
     private void CheckForJournal()
@@ -63,27 +69,30 @@ public class Player_Actions : MonoBehaviour
     {
         _ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
         // Define the maximum raycast distance.
-        float maxRaycastDistance = 2f;
+        float maxRaycastDistance = 5f;
         // Perform the raycast.
-        /*
+        Debug.LogError("firing");
         if (Physics.Raycast(_ray, out _hit, maxRaycastDistance))
         {
             if (_hit.collider.gameObject.CompareTag("Door"))
             {
+                Debug.LogError("firing2");
                 ToggleDoor(_hit.collider.gameObject);
             }
-            if (_hit.collider.gameObject.CompareTag("Lights"))
-            {
-                ToggleLights(_hit.collider.gameObject);
-            }
-            if (_hit.collider.gameObject.CompareTag("Letter"))
-            {
-                PickLetter(_hit.collider.gameObject);
-            }
-            if (_hit.collider.gameObject.CompareTag("Candle"))
-            {
-                PickLetter(_hit.collider.gameObject);
-            }
+         
+        }
+        /*
+        if (_hit.collider.gameObject.CompareTag("Lights"))
+        {
+            ToggleLights(_hit.collider.gameObject);
+        }
+        if (_hit.collider.gameObject.CompareTag("Letter"))
+        {
+            PickLetter(_hit.collider.gameObject);
+        }
+        if (_hit.collider.gameObject.CompareTag("Candle"))
+        {
+            PickLetter(_hit.collider.gameObject);
         }
         */
     }
