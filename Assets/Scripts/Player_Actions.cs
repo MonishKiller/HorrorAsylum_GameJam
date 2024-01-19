@@ -41,7 +41,7 @@ public class Player_Actions : MonoBehaviour
         _ray2 = _mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(_ray2, out _hit, 2f))
         {
-            if (_hit.collider.gameObject.CompareTag("Door") || _hit.collider.gameObject.CompareTag("Lights")
+           /* if (_hit.collider.gameObject.CompareTag("Door") || _hit.collider.gameObject.CompareTag("Lights")
             || _hit.collider.gameObject.CompareTag("Letter") || _hit.collider.gameObject.CompareTag("Candle"))
             {
                // MainCanvas_UI.Instance.Show_Helper();
@@ -50,6 +50,7 @@ public class Player_Actions : MonoBehaviour
             {
               //  MainCanvas_UI.Instance.Hide_Helper();
             }
+            */
         }
     }
 
