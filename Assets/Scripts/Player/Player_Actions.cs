@@ -53,8 +53,11 @@ public class Player_Actions : MonoBehaviour
             */
            if (_hit.collider.gameObject.CompareTag("Door"))
            {
-               
-               
+                MainCanvas_UI.Instance.Show_Helper();
+           }
+           else
+           {
+                 MainCanvas_UI.Instance.Hide_Helper();
            }
         }
         
