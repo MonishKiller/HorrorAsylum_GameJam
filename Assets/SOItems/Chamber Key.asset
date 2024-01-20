@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92de7fe282cbc4d4683d55727b6cfb40, type: 3}
-  m_Name: Key
+  m_Name: Chamber Key
   m_EditorClassIdentifier: 
   _id: 1
-  _itemName: GUARD KEY
+  _itemName: CHAMBER KEY
   _itemValue: 1
-  _itemIcon: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
+  _itemIcon: {fileID: 21300000, guid: 68a4f78ca838be74db8fc15690426f31, type: 3}
   _itemType: 0
   _itemObj: {fileID: 1079753239017859879, guid: d132e6cf9c252944dafb483db47fdb8e, type: 3}

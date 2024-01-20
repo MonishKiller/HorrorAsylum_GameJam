@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92de7fe282cbc4d4683d55727b6cfb40, type: 3}
+  m_Name: DiningKey
+  m_EditorClassIdentifier: 
+  _id: 1
+  _itemName: DINING KEY
+  _itemValue: 1
+  _itemIcon: {fileID: 21300000, guid: 9c8d1502e2cbdf14f8767a5e65670e6b, type: 3}
+  _itemType: 0
+  _itemObj: {fileID: 7127391613852441897, guid: 4f5ffdd616a9d0b4d94d36eca53202f4, type: 3}

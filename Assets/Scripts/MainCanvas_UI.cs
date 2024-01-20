@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MainCanvas_UI : Singleton<MainCanvas_UI>
 {
     [SerializeField] private TextMeshProUGUI _defaultMsg_TMP;
-    [SerializeField] private TextMeshProUGUI _helper_TMP;
+    [SerializeField] private GameObject _helper_Obj;
     [SerializeField] private UI_LetterPanel _UI_letterPanel;
 
     [SerializeField] public AudioSource _audioSource;
@@ -26,14 +26,13 @@ public class MainCanvas_UI : Singleton<MainCanvas_UI>
     }
     public void Show_Helper()
     {
-        Debug.LogError("SHowinf");
-        if (!this._helper_TMP.gameObject.activeSelf)
-            this._helper_TMP.gameObject.SetActive(true);
+        if (!this._helper_Obj.gameObject.activeSelf)
+            this._helper_Obj.gameObject.SetActive(true);
     }
     public void Hide_Helper()
     {
-        if (this._helper_TMP.gameObject.activeSelf)
-            this._helper_TMP.gameObject.SetActive(false);
+        if (this._helper_Obj.gameObject.activeSelf)
+            this._helper_Obj.gameObject.SetActive(false);
     }
 
 

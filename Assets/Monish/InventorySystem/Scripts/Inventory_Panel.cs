@@ -50,6 +50,7 @@ public class Inventory_Panel : MonoBehaviour
        {
            if (targetobj != go)
            {
+               Destroy(targetobj);
                targetobj = null;
                targetobj=Instantiate(go, InitialTransform.position, Quaternion.identity);
            }

@@ -250,7 +250,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1ff285458d4a8344fa497cfcd30d85cf, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSource: {fileID: 2271569385671344593}
-  _playerMainSource: {fileID: 2271569385671344593}
+  _playerMainSource: {fileID: 5169713829865161913}
   _WalkAudio_SFX:
   - {fileID: 8300000, guid: 7d04b18dbdc40f7408a7e2bf6dcdcf22, type: 3}
   _crushingPaper_SFX: {fileID: 8300000, guid: 61253dd9de0948f4aaf772e494297256, type: 3}
@@ -383,6 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371b3a5329844184eba82e6658ea9a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxRayDistance: 5
 --- !u!1 &8079860674236362386
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +426,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7d04b18dbdc40f7408a7e2bf6dcdcf22, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

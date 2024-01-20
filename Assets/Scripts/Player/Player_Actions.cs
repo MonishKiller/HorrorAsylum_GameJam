@@ -46,26 +46,21 @@ public class Player_Actions : MonoBehaviour
     private void Check_UI()
     {
         _ray2 = _mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(_ray2, out _hit, 2f))
+        if (Physics.Raycast(_ray2, out _hit, _maxRayDistance))
         {
-           /* if (_hit.collider.gameObject.CompareTag("Door") || _hit.collider.gameObject.CompareTag("Lights")
-            || _hit.collider.gameObject.CompareTag("Letter") || _hit.collider.gameObject.CompareTag("Candle"))
-            {
-               // MainCanvas_UI.Instance.Show_Helper();
-            }
-            else
-            {
-              //  MainCanvas_UI.Instance.Hide_Helper();
-            }
-            */
-           if (_hit.collider.gameObject.CompareTag("Door"))
+           if (_hit.collider.gameObject.CompareTag("Door")||_hit.collider.gameObject.CompareTag("Object"))
            {
                 MainCanvas_UI.Instance.Show_Helper();
            }
            else
            {
-              //   MainCanvas_UI.Instance.Hide_Helper();
+               MainCanvas_UI.Instance.Hide_Helper();
+               
            }
+        }
+        else
+        {
+            MainCanvas_UI.Instance.Hide_Helper();
         }
         
     }
@@ -85,7 +80,6 @@ public class Player_Actions : MonoBehaviour
         _ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
         // Define the maximum raycast distance.
         // Perform the raycast.
-        Debug.LogError("firing");
         if (Physics.Raycast(_ray, out _hit, _maxRayDistance))
         {
             if (_hit.collider.gameObject.CompareTag("Door"))
@@ -94,7 +88,6 @@ public class Player_Actions : MonoBehaviour
             }
             if (_hit.collider.gameObject.CompareTag("Object"))
             {
-                Debug.LogError("Object");
                  ToggleObject(_hit.collider.gameObject);
             }
             
@@ -132,6 +125,7 @@ public class Player_Actions : MonoBehaviour
 
     private void ToggleObject(GameObject go)
     {
+        _player_Audio.Player_Audio_PicKUp_Object();
          go.GetComponent<Item_PickUp>().ItemPicked();
     }
     private void ToggleLights(GameObject go)
