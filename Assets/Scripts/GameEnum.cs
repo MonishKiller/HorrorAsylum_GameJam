@@ -8,6 +8,7 @@ namespace GameEnum
     {
             Key = 0,
             Camera = 1,
+            Document=2,
             Other = 2
     }
     
