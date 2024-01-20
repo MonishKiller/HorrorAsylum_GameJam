@@ -10,6 +10,7 @@ public class SO_Item : ScriptableObject
     [SerializeField] private Sprite _itemIcon;
     [SerializeField] private ItemType _itemType;
     [SerializeField] private GameObject _itemObj;
+    [SerializeField] private string _itemDescription;
     
     public int ID { get { return _id; } }
     public string ItemName { get { return _itemName; } }
@@ -19,6 +20,8 @@ public class SO_Item : ScriptableObject
  
     public ItemType ItemType => this._itemType;
     public GameObject ItemObj => this._itemObj;
+
+    public string ItemDescription => this._itemDescription;
 
 
     public void UpdateValue(int value)
