@@ -70,7 +70,7 @@ public class Puzzle : MonoBehaviour
   {
   
     pieces = new List<Transform>();
-    size = 2;
+    size = 3;
     CreateGamePieces(0.01f);
     // Enable the cursor at the start
     Cursor.visible = true;
