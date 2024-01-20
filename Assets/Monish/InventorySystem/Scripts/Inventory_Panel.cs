@@ -21,12 +21,33 @@ public class Inventory_Panel : MonoBehaviour
         else Debug.Log($"Inventory Panel  : The Close button is not set ");
     }
     #region Events
+
+    private void OnInventoryOpened(bool isOpened)
+    {
+        if (isOpened)
+        {
+            Time.timeScale = 0.1f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            
+        }
+        
+    }
     private void OnClicked_Inventory_Close_BTN()
     {
+        OnInventoryOpened(false);
         this.gameObject.SetActive(false);
     }
     public void OnEnable_Inventory()
     {
+        OnInventoryOpened(true);
         this.gameObject.SetActive(true);
     }
     public Camera rotationCamera;
