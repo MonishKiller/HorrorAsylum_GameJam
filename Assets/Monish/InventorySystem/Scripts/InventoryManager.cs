@@ -59,9 +59,9 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void ShowCurrent_Item(GameObject currentItem)
+    public void ShowCurrent_Item(GameObject currentItem,SO_Item soItem)
     {
-        inventory_Panel.Instantiate_Item(currentItem);
+        inventory_Panel.Instantiate_Item(currentItem,soItem);
         
     }
 

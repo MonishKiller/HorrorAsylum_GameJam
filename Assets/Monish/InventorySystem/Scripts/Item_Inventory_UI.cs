@@ -48,7 +48,7 @@ public class Item_Inventory_UI : MonoBehaviour
             if (_itemCreated == false)
             {
                 _itemCreated = true;
-                InventoryManager.Instance.ShowCurrent_Item(this._itemSO.ItemObj);
+                InventoryManager.Instance.ShowCurrent_Item(this._itemSO.ItemObj,this._itemSO);
             }
         }
         else

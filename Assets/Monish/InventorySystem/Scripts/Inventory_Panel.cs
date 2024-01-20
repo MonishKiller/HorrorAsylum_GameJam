@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Inventory_Panel : MonoBehaviour
 {
-    //Todo Change Panel Archietecture similar to DA 
-
     [SerializeField] private Button inventory_Close_BTN;
+    [SerializeField] private TextMeshProUGUI TMP_ItemDescription;
+    [SerializeField] private TextMeshProUGUI TMP_ItemTitle;
 
     private void Awake()
     {
-        
         // Enable the cursor at the start
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -39,7 +39,7 @@ public class Inventory_Panel : MonoBehaviour
 
    private bool isCurrentItemShowing;
 
-   public void Instantiate_Item(GameObject go)
+   public void Instantiate_Item(GameObject go,SO_Item soItem )
    {
        if (targetobj == null)
        {
@@ -55,6 +55,9 @@ public class Inventory_Panel : MonoBehaviour
                targetobj=Instantiate(go, InitialTransform.position, Quaternion.identity);
            }
        }
+
+       TMP_ItemDescription.text = soItem.ItemDescription;
+       TMP_ItemTitle.text = soItem.ItemName;
        isCurrentItemShowing = true;
 
    }
@@ -71,11 +74,9 @@ public class Inventory_Panel : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit))
                 {
-                    Debug.LogError("HIT");
                     // Check if the hit object is the object this script is attached to
                     if (hit.collider.gameObject)
                     {
-                        Debug.LogError("HIT GO");
                         isDragging = true;
                         initialMousePos = Input.mousePosition;
                     }
