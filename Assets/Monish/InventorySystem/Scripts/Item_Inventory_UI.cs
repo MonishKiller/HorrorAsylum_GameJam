@@ -9,8 +9,8 @@ using Unity.VisualScripting;
 public class Item_Inventory_UI : MonoBehaviour
 {
     [SerializeField] private ItemType _itemType;
-
     [SerializeField] private SO_Item _itemSO;
+    
    // [SerializeField] private ConsumableItem _consumableItem;
     //[SerializeField] private CraftingItem _craftingItem;
 
@@ -20,6 +20,8 @@ public class Item_Inventory_UI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _item_Count;
     [SerializeField] private Toggle _item_Toggle;
     #endregion References_UI
+
+    private bool _itemCreated;
 
     #region  Unity_Methods
     private void Start()
@@ -43,11 +45,15 @@ public class Item_Inventory_UI : MonoBehaviour
         if (isActive)
         {
             Debug.Log($"The {(this._item_Name.text)} is Selected");
-            InventoryManager.Instance.ShowCurrent_Item(this._itemSO.ItemObj);
-         //  if (_itemType == ItemType.Consumable)
-           // {
-             //   RequestToAdd_ConsumableItem();
-           // }
+            if (_itemCreated == false)
+            {
+                _itemCreated = true;
+                InventoryManager.Instance.ShowCurrent_Item(this._itemSO.ItemObj);
+            }
+        }
+        else
+        {
+            _itemCreated = false;
 
         }
 
