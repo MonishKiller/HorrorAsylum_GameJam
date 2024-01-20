@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameEnum;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -8,13 +9,13 @@ public class Door : MonoBehaviour
     private AudioSource doorAudioSouce;
     [SerializeField] private AudioClip[] doorAudio;
     private BoxCollider _boxCollider;
-    public Doors _currentDoor;
     [SerializeField] private GameObject ending;
     [SerializeField] private GameObject _door;
-
+    
     private Transform _doorTransform;
-
-    public enum Doors { whiteDoor,brownDoor,Other}
+    public keyType _doorType;
+    public bool isUnlocked=false;
+    
     private void Start()
     {
         this.doorAudioSouce = this.GetComponent<AudioSource>();
@@ -23,24 +24,26 @@ public class Door : MonoBehaviour
     public void ToggleDoor()
     {
         // Toggle the door's state (open or closed)
-        if (CheckDoorLocked())
+
+        if (isUnlocked)
         {
             isOpen = !isOpen;
             if (isOpen == true)
             {
                 this.doorAudioSouce.clip = doorAudio[0];
-               // _boxCollider.isTrigger = true;
-               OpenCloseDoor();
+                // _boxCollider.isTrigger = true;
+                OpenCloseDoor();
             }
             else
             {
                 this.doorAudioSouce.clip = doorAudio[1];
                 OpenCloseDoor();
                 //_boxCollider.isTrigger = false;
-            };
+            }
             this.doorAudioSouce.Play();
-         //   doorAnimator.SetBool("IsDoorActive", isOpen);
+            //   doorAnimator.SetBool("IsDoorActive", isOpen);
         }
+
     }
 
     private void OpenCloseDoor()
@@ -57,14 +60,11 @@ public class Door : MonoBehaviour
         }
 
     }
-    public bool CheckDoorLocked()
+
+    public void UnlockDoor()
     {
-        switch (_currentDoor)
-        {
-            case Doors.Other:
-                    return true;
-        }
-        return true;
+        isUnlocked = true;
+
     }
 
 }

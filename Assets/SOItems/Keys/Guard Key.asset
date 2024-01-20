@@ -17,4 +17,6 @@ MonoBehaviour:
   _itemValue: 1
   _itemIcon: {fileID: 21300000, guid: 68a4f78ca838be74db8fc15690426f31, type: 3}
   _itemType: 0
+  _keyType: 0
   _itemObj: {fileID: 1079753239017859879, guid: d132e6cf9c252944dafb483db47fdb8e, type: 3}
+  _itemDescription: Opens Guard Door

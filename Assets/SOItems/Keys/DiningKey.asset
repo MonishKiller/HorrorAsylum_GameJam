@@ -17,4 +17,6 @@ MonoBehaviour:
   _itemValue: 1
   _itemIcon: {fileID: 21300000, guid: 9c8d1502e2cbdf14f8767a5e65670e6b, type: 3}
   _itemType: 0
+  _keyType: 1
   _itemObj: {fileID: 7127391613852441897, guid: 4f5ffdd616a9d0b4d94d36eca53202f4, type: 3}
+  _itemDescription: Opens  Dining Room

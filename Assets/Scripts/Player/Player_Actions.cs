@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameEnum;
 using UnityEditor;
 using UnityEngine;
 
@@ -125,7 +126,25 @@ public class Player_Actions : MonoBehaviour
     private void ToggleDoor(GameObject go)
     {
         door = go.GetComponent<Door>();
-        door.ToggleDoor();
+        if (door.isUnlocked)
+        {
+            door.ToggleDoor();
+        }
+        else
+        {
+            if (door._doorType == keyType.None)
+            {
+                door.UnlockDoor();
+                door.ToggleDoor();
+            }
+            if (InventoryManager.Instance.CheckKeyAvailable(door._doorType))
+            {
+                door.UnlockDoor();
+                door.ToggleDoor();
+            }
+        }
+      
+       
     }
 
     private void ToggleObject(GameObject go)

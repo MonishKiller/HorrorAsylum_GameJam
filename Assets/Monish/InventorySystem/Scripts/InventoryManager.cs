@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameEnum;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -64,8 +65,7 @@ public class InventoryManager : MonoBehaviour
         inventory_Panel.Instantiate_Item(currentItem,soItem);
         
     }
-
-
+    
     public void AddItem(SO_Item item_data)
     {
         items.Add(item_data);
@@ -74,6 +74,21 @@ public class InventoryManager : MonoBehaviour
     public void RemoveItem(SO_Item item_data)
     {
         items.Remove(item_data);
+    }
+
+    public bool CheckKeyAvailable(keyType currentKey)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i].ItemType == ItemType.Key)
+            {
+                if (items[i].KeyType == currentKey)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 /*
     public void CraftItem(ConsumableItem consumableItem)
