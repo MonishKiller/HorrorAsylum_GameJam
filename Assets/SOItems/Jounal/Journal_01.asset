@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92de7fe282cbc4d4683d55727b6cfb40, type: 3}
-  m_Name: Journal_2
+  m_Name: Journal_01
   m_EditorClassIdentifier: 
   _id: 1
-  _itemName: REPORT ~ 2
+  _itemName: REPORT ~ 1
   _itemValue: 1
   _itemIcon: {fileID: 21300000, guid: 12fb566027fa010469bcdb0037ee1ec2, type: 3}
   _itemType: 2
+  _keyType: 6
   _itemObj: {fileID: 8046147458010241576, guid: 07d01e2f660fe76488792d6d1728d73a, type: 3}
-  _itemDescription: The second day of our experiment witnessed a notable deterioration
-    in Viena's mental state. Elevated anxiety levels and heightened aggression were
-    observed. Attempts to engage Viena in standard therapeutic interventions proved
-    challenging, indicating a rapid decline.
+  _itemDescription: Our experiment with Mental Health Patient Viena took a concerning
+    turn on Day 1. Viena's behavior became increasingly unpredictable, deviating
+    significantly from the initial syndrome diagnosis. Agitation and uncharacteristic
+    responses raised alarms.
