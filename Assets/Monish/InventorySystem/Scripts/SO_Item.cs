@@ -1,4 +1,5 @@
 using UnityEngine;
+using GameEnum;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Item/Create new Item")]
 public class SO_Item : ScriptableObject
@@ -7,8 +8,8 @@ public class SO_Item : ScriptableObject
     [SerializeField] private string _itemName;
     [SerializeField] private int _itemValue;
     [SerializeField] private Sprite _itemIcon;
-
-    //[SerializeField] private ItemType _itemType;
+    [SerializeField] private ItemType _itemType;
+    
     //[SerializeField] private CraftingItem _craftinItem;
     //[SerializeField] private ConsumableItem _consumableITem;
 
@@ -19,7 +20,7 @@ public class SO_Item : ScriptableObject
 
     //  public ConsumableItem ConsumableItem => this._consumableITem;
     // public CraftingItem CraftingItem => this._craftinItem;
-  //  public ItemType ItemType => this._itemType;
+    public ItemType ItemType => this._itemType;
 
 
     public void UpdateValue(int value)

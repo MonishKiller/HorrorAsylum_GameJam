@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using GameEnum;
 
 public class Item_Inventory_UI : MonoBehaviour
 {
- //   [SerializeField] private ItemType _itemType;
+    [SerializeField] private ItemType _itemType;
    // [SerializeField] private ConsumableItem _consumableItem;
     //[SerializeField] private CraftingItem _craftingItem;
 
@@ -25,11 +26,12 @@ public class Item_Inventory_UI : MonoBehaviour
     }
     #endregion Unity_Methods
 
-    public void Initialize(Sprite item_Sprite, string item_Name, int item_Count)
+    public void Initialize(Sprite item_Sprite, string item_Name, int item_Count,ItemType itemType)
     {
         this._item_Image.sprite = item_Sprite;
         this._item_Name.text = item_Name;
         this._item_Count.text = item_Count.ToString();
+        this._itemType = itemType;
 
     }
     private void OnClick_Item_Selected(bool isActive)

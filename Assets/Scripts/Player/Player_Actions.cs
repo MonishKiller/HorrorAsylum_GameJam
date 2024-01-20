@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Player_Actions : MonoBehaviour
 {
-    [Header("Variables")]
-
+    [Header("Variables")] 
+    [SerializeField] private float _maxRayDistance = 5f;
+        
     Camera _mainCamera;
     Ray _ray = new Ray();
     Ray _ray2 = new Ray();
@@ -15,6 +16,8 @@ public class Player_Actions : MonoBehaviour
     private Lights_Environment lights = new Lights_Environment();
     private Player_Audio _player_Audio;
     private GameObject _candle;
+    
+    
     private void Start()
     {
         _mainCamera = Camera.main;
@@ -29,6 +32,10 @@ public class Player_Actions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             CheckForJournal();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            CheckForInventory();
         }
 
     }
@@ -57,10 +64,15 @@ public class Player_Actions : MonoBehaviour
            }
            else
            {
-                 MainCanvas_UI.Instance.Hide_Helper();
+              //   MainCanvas_UI.Instance.Hide_Helper();
            }
         }
         
+    }
+
+    private void CheckForInventory()
+    {
+        InventoryManager.Instance.EnableInventory();
     }
 
     private void CheckForJournal()
@@ -72,16 +84,20 @@ public class Player_Actions : MonoBehaviour
     {
         _ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
         // Define the maximum raycast distance.
-        float maxRaycastDistance = 5f;
         // Perform the raycast.
         Debug.LogError("firing");
-        if (Physics.Raycast(_ray, out _hit, maxRaycastDistance))
+        if (Physics.Raycast(_ray, out _hit, _maxRayDistance))
         {
             if (_hit.collider.gameObject.CompareTag("Door"))
             {
-                Debug.LogError("firing2");
                 ToggleDoor(_hit.collider.gameObject);
             }
+            if (_hit.collider.gameObject.CompareTag("Object"))
+            {
+                Debug.LogError("Object");
+                 ToggleObject(_hit.collider.gameObject);
+            }
+            
          
         }
         /*
@@ -113,6 +129,11 @@ public class Player_Actions : MonoBehaviour
         door = go.GetComponent<Door>();
         door.ToggleDoor();
     }
+
+    private void ToggleObject(GameObject go)
+    {
+         go.GetComponent<Item_PickUp>().ItemPicked();
+    }
     private void ToggleLights(GameObject go)
     {
         _player_Audio.Player_Audio_PicKUp_Object();
@@ -121,5 +142,6 @@ public class Player_Actions : MonoBehaviour
         if (lights.LightActive) { lights.SetLightActive(false); }
         else { lights.SetLightActive(true); }
     }
+    
 
 }

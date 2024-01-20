@@ -23,7 +23,7 @@ public class InventoryManager : MonoBehaviour
     public void EnableInventory()
     {
         inventory_Panel.OnEnable_Inventory();
-      //  Initialize_CraftingItem_UI();
+        Initialize_CraftingItem_UI();
     }
     private void Awake()
     {
@@ -35,8 +35,27 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-      //  Initialize_ConsumableItem_UI();
+      // Initialize_ConsumableItem_UI();
 
+    }
+    /// <summary>
+    /// Updated The UI of collected Item in the Game
+    /// </summary>
+    public void Initialize_CraftingItem_UI()
+    {
+        //To Destroy the Previous List
+        foreach (Transform item in itemCrafting_Pos)
+        {
+            Destroy(item.gameObject);
+        }
+
+        foreach (var currentItem in items)
+        {
+            GameObject obj = Instantiate(crafting_inventoryItem, itemCrafting_Pos);
+            //Make Sure to set the Enum None if Its not Crafting Item
+            obj.GetComponent<Item_Inventory_UI>().Initialize(currentItem.ItemIcon, currentItem.ItemName, currentItem.ItemValue,currentItem.ItemType);
+
+        }
     }
 
 
@@ -137,30 +156,6 @@ public class InventoryManager : MonoBehaviour
 
     }
 
-
-
-
-    /// <summary>
-    /// Updated The UI of collected Item in the Game
-    /// </summary>
-    public void Initialize_CraftingItem_UI()
-    {
-        //To Destroy the Previous List
-        foreach (Transform item in itemCrafting_Pos)
-        {
-            Destroy(item.gameObject);
-        }
-
-        foreach (var currentItem in items)
-        {
-            GameObject obj = Instantiate(crafting_inventoryItem, itemCrafting_Pos);
-            //Make Sure to set the Enum None if Its not Crafting Item
-            obj.GetComponent<Item_Inventory_UI>().Initialize(currentItem.ItemIcon, currentItem.ItemName, currentItem.ItemValue,
-            currentItem.ConsumableItem, currentItem.CraftingItem);
-
-        }
-    }
-
     /// <summary>
     /// Shows the Item Which Can be Crafted in the UI
     /// </summary>
@@ -182,6 +177,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
     */
+    
 
 
 
