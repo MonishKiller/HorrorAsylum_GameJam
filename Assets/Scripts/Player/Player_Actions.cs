@@ -38,6 +38,11 @@ public class Player_Actions : MonoBehaviour
             CheckForInventory();
         }
 
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Puzzle.Instance.OnShow_Puzzle();
+        }
+
     }
     private void FixedUpdate()
     {

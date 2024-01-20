@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Journal_3
   m_EditorClassIdentifier: 
   _id: 1
-  _itemName: REPORT ~ 1
+  _itemName: REPORT ~ 3
   _itemValue: 1
   _itemIcon: {fileID: 21300000, guid: 12fb566027fa010469bcdb0037ee1ec2, type: 3}
   _itemType: 2
   _itemObj: {fileID: 8046147458010241576, guid: 07d01e2f660fe76488792d6d1728d73a, type: 3}
-  _itemDescription: Our experiment with Mental Health Patient Viena took a concerning
-    turn on Day 1. Viena's behavior became increasingly unpredictable, deviating
-    significantly from the initial syndrome diagnosis. Agitation and uncharacteristic
-    responses raised alarms.
+  _itemDescription: Disturbingly, on Day 3, we observed unmistakable extraterrestrial
+    traits in Viena's behavior. Unearthly responses and manifestations suggest a
+    profound transformation. Urgent intervention is imperative to address the evolving
+    ethical and scientific implications.
