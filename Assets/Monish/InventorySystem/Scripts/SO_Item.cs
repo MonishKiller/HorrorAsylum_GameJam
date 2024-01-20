@@ -9,6 +9,7 @@ public class SO_Item : ScriptableObject
     [SerializeField] private int _itemValue;
     [SerializeField] private Sprite _itemIcon;
     [SerializeField] private ItemType _itemType;
+    [SerializeField] private keyType _keyType;
     [SerializeField] private GameObject _itemObj;
     [SerializeField] private string _itemDescription;
     
@@ -19,6 +20,7 @@ public class SO_Item : ScriptableObject
 
  
     public ItemType ItemType => this._itemType;
+    public keyType KeyType=> this._keyType;
     public GameObject ItemObj => this._itemObj;
 
     public string ItemDescription => this._itemDescription;
