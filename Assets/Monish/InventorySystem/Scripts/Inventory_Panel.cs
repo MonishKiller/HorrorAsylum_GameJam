@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Inventory_Panel : MonoBehaviour
@@ -32,48 +33,74 @@ public class Inventory_Panel : MonoBehaviour
     private bool isDragging = false;
     private Vector3 initialMousePos;
     public float rotationSpeed = 5f;
-    public GameObject prefab;
+    
+    public GameObject targetobj;
+    public Transform InitialTransform;
+
+   private bool isCurrentItemShowing;
+
+   public void Instantiate_Item(GameObject go)
+   {
+       if (targetobj == null)
+       {
+          targetobj= Instantiate(go, InitialTransform.position, Quaternion.identity);
+         
+       }
+       else
+       {
+           if (targetobj != go)
+           {
+               targetobj = null;
+               targetobj=Instantiate(go, InitialTransform.position, Quaternion.identity);
+           }
+       }
+       isCurrentItemShowing = true;
+
+   }
     void Update()
     {
-        // Check for mouse button down to start dragging
-        if (Input.GetMouseButtonDown(0))
+        if (isCurrentItemShowing)
         {
-            // Raycast from the specified camera
-            Ray ray = rotationCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            // Check for mouse button down to start dragging
+            if (Input.GetMouseButtonDown(0))
             {
-                Debug.LogError("HIT");
-                // Check if the hit object is the object this script is attached to
-                if (hit.collider.gameObject)
+                // Raycast from the specified camera
+                Ray ray = rotationCamera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
                 {
-                    Debug.LogError("HIT GO");
-                    isDragging = true;
-                    initialMousePos = Input.mousePosition;
+                    Debug.LogError("HIT");
+                    // Check if the hit object is the object this script is attached to
+                    if (hit.collider.gameObject)
+                    {
+                        Debug.LogError("HIT GO");
+                        isDragging = true;
+                        initialMousePos = Input.mousePosition;
+                    }
                 }
             }
-        }
 
-        // Check for mouse button release to stop dragging
-        if (Input.GetMouseButtonUp(0))
-        {
-            isDragging = false;
-        }
+            // Check for mouse button release to stop dragging
+            if (Input.GetMouseButtonUp(0))
+            {
+                isDragging = false;
+            }
 
-        // Rotate the object while dragging
-        if (isDragging)
-        {
-            // Calculate the rotation amounts based on the mouse movement
-            float rotationX = (Input.mousePosition.y - initialMousePos.y) * rotationSpeed * Time.deltaTime;
-            float rotationY = (Input.mousePosition.x - initialMousePos.x) * rotationSpeed * Time.deltaTime;
+            // Rotate the object while dragging
+            if (isDragging)
+            {
+                // Calculate the rotation amounts based on the mouse movement
+                float rotationX = (Input.mousePosition.y - initialMousePos.y) * rotationSpeed * Time.deltaTime;
+                float rotationY = (Input.mousePosition.x - initialMousePos.x) * rotationSpeed * Time.deltaTime;
 
-            // Apply rotation to the object around its local axes
-            prefab.transform.Rotate(Vector3.right, rotationX, Space.Self);
-            prefab.transform.Rotate(Vector3.up, rotationY, Space.World);
+                // Apply rotation to the object around its local axes
+                targetobj.transform.Rotate(Vector3.right, rotationX, Space.Self);
+                targetobj.transform.Rotate(Vector3.up, rotationY, Space.World);
 
-            // Update initial mouse position for the next frame
-            initialMousePos = Input.mousePosition;
+                // Update initial mouse position for the next frame
+                initialMousePos = Input.mousePosition;
+            }
         }
     }
     #endregion Events

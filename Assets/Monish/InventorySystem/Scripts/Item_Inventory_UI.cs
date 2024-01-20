@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using GameEnum;
+using Unity.VisualScripting;
 
 public class Item_Inventory_UI : MonoBehaviour
 {
     [SerializeField] private ItemType _itemType;
+
+    [SerializeField] private SO_Item _itemSO;
    // [SerializeField] private ConsumableItem _consumableItem;
     //[SerializeField] private CraftingItem _craftingItem;
 
@@ -26,12 +29,13 @@ public class Item_Inventory_UI : MonoBehaviour
     }
     #endregion Unity_Methods
 
-    public void Initialize(Sprite item_Sprite, string item_Name, int item_Count,ItemType itemType)
+    public void Initialize(Sprite item_Sprite, string item_Name, int item_Count,ItemType itemType,SO_Item itemSO)
     {
         this._item_Image.sprite = item_Sprite;
         this._item_Name.text = item_Name;
         this._item_Count.text = item_Count.ToString();
         this._itemType = itemType;
+        this._itemSO = itemSO;
 
     }
     private void OnClick_Item_Selected(bool isActive)
@@ -39,6 +43,7 @@ public class Item_Inventory_UI : MonoBehaviour
         if (isActive)
         {
             Debug.Log($"The {(this._item_Name.text)} is Selected");
+            InventoryManager.Instance.ShowCurrent_Item(this._itemSO.ItemObj);
          //  if (_itemType == ItemType.Consumable)
            // {
              //   RequestToAdd_ConsumableItem();

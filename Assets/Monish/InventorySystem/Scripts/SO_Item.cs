@@ -9,18 +9,16 @@ public class SO_Item : ScriptableObject
     [SerializeField] private int _itemValue;
     [SerializeField] private Sprite _itemIcon;
     [SerializeField] private ItemType _itemType;
+    [SerializeField] private GameObject _itemObj;
     
-    //[SerializeField] private CraftingItem _craftinItem;
-    //[SerializeField] private ConsumableItem _consumableITem;
-
     public int ID { get { return _id; } }
     public string ItemName { get { return _itemName; } }
     public int ItemValue { get { return _itemValue; } }
     public Sprite ItemIcon { get { return _itemIcon; } }
 
-    //  public ConsumableItem ConsumableItem => this._consumableITem;
-    // public CraftingItem CraftingItem => this._craftinItem;
+ 
     public ItemType ItemType => this._itemType;
+    public GameObject ItemObj => this._itemObj;
 
 
     public void UpdateValue(int value)

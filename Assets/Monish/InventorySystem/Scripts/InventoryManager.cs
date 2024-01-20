@@ -53,9 +53,16 @@ public class InventoryManager : MonoBehaviour
         {
             GameObject obj = Instantiate(crafting_inventoryItem, itemCrafting_Pos);
             //Make Sure to set the Enum None if Its not Crafting Item
-            obj.GetComponent<Item_Inventory_UI>().Initialize(currentItem.ItemIcon, currentItem.ItemName, currentItem.ItemValue,currentItem.ItemType);
+            obj.GetComponent<Item_Inventory_UI>().Initialize(currentItem.ItemIcon, currentItem.ItemName,
+                currentItem.ItemValue,currentItem.ItemType,currentItem);
 
         }
+    }
+
+    public void ShowCurrent_Item(GameObject currentItem)
+    {
+        inventory_Panel.Instantiate_Item(currentItem);
+        
     }
 
 
