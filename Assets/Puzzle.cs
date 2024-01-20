@@ -10,6 +10,7 @@ public class Puzzle : MonoBehaviour
   [SerializeField] private Transform gameTransform;
   [SerializeField] private Transform piecePrefab;
   [SerializeField] private Camera _camera;
+  [SerializeField] private GameObject _puzzleObj;
 
   private List<Transform> pieces;
   private int emptyLocation;
@@ -77,14 +78,14 @@ public class Puzzle : MonoBehaviour
     
     Shuffle();
     isPuzzleOn = true;
-    this.gameObject.SetActive(true);
+    _puzzleObj.SetActive(true);
 
   }
 
   public void OnHide_puzzle()
   {
     isPuzzleOn = false;
-    this.gameObject.SetActive(false);
+    _puzzleObj.SetActive(true);
   }
   //if (!shuffling && CheckCompletion()) {
    // shuffling = true;
