@@ -15,14 +15,7 @@ public class ThrowObjects : MonoBehaviour
         objectToThrow = this.gameObject;
         _playerMainSource = this.gameObject.GetComponentInParent<AudioSource>();
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-            ThrowRandom();
-    }
-
-    void ThrowRandom()
+   public void ThrowRandom()
     {
         if (objectToThrow != null)
         {
