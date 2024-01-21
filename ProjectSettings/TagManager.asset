@@ -7,6 +7,7 @@ TagManager:
   - Door
   - Lights
   - Object
+  - Puzzle
   layers:
   - Default
   - TransparentFX

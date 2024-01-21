@@ -13,4 +13,5 @@ public class Item_PickUp : MonoBehaviour
         Destroy(this.gameObject);
         
     }
+    
 }

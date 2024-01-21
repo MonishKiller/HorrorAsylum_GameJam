@@ -30,20 +30,11 @@ public class Player_Actions : MonoBehaviour
         {
             CheckForInteractables();
         }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            CheckForJournal();
-        }
         if (Input.GetKeyDown(KeyCode.I))
         {
             CheckForInventory();
         }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Puzzle.Instance.OnShow_Puzzle();
-        }
-
+        
     }
     private void FixedUpdate()
     {
@@ -54,7 +45,7 @@ public class Player_Actions : MonoBehaviour
         _ray2 = _mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(_ray2, out _hit, _maxRayDistance))
         {
-           if (_hit.collider.gameObject.CompareTag("Door")||_hit.collider.gameObject.CompareTag("Object"))
+           if (_hit.collider.gameObject.CompareTag("Door")||_hit.collider.gameObject.CompareTag("Object")||_hit.collider.gameObject.CompareTag("Puzzle"))
            {
                 MainCanvas_UI.Instance.Show_Helper();
            }
@@ -95,6 +86,11 @@ public class Player_Actions : MonoBehaviour
             if (_hit.collider.gameObject.CompareTag("Object"))
             {
                  ToggleObject(_hit.collider.gameObject);
+            }
+            if (_hit.collider.gameObject.CompareTag("Puzzle"))
+            {
+                MainCanvas_UI.Instance.Hide_Helper();
+                TogglePuzzle(_hit.collider.gameObject);
             }
             
          
@@ -146,7 +142,10 @@ public class Player_Actions : MonoBehaviour
       
        
     }
-
+    private void TogglePuzzle(GameObject go)
+    {
+        go.GetComponent<Item_Puzzle>().Item_PickPuzzle();
+    }
     private void ToggleObject(GameObject go)
     {
         _player_Audio.Player_Audio_PicKUp_Object();

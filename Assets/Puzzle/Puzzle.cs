@@ -11,6 +11,7 @@ public class Puzzle : MonoBehaviour
   [SerializeField] private Transform piecePrefab;
   [SerializeField] private Camera _camera;
   [SerializeField] private GameObject _puzzleObj;
+  [SerializeField] private GameObject[] _allPuzzle;
 
   private List<Transform> pieces;
   private int emptyLocation;
@@ -18,6 +19,8 @@ public class Puzzle : MonoBehaviour
   private bool shuffling = false;
 
   private bool isPuzzleOn = false;
+  private int currentPuzzletype;
+  private bool isShuffled;
   
   private void Awake()
   {
@@ -66,17 +69,40 @@ public class Puzzle : MonoBehaviour
   {
     Shuffle();
   }
-  public void OnShow_Puzzle()
+  private void OnPuzzleOpened(bool isOpened)
   {
-  
-    pieces = new List<Transform>();
-    size = 3;
-    CreateGamePieces(0.01f);
-    // Enable the cursor at the start
-    Cursor.visible = true;
-    Cursor.lockState = CursorLockMode.None;
-    
-    Shuffle();
+    if (isOpened)
+    {
+      Time.timeScale = 0.1f;
+      Cursor.visible = true;
+      Cursor.lockState = CursorLockMode.None;
+            
+    }
+    else
+    {
+      Time.timeScale = 1;
+      Cursor.visible = false;
+      Cursor.lockState = CursorLockMode.Locked;
+            
+    }
+        
+  }
+  public void OnShow_Puzzle(int puzzleType)
+  {
+    currentPuzzletype = puzzleType;
+    InventoryManager.Instance.EnableDisablePuzzle(puzzleType,false);
+    OnPuzzleOpened(true);
+
+    if (!isShuffled)
+    {
+      piecePrefab = _allPuzzle[puzzleType].transform;
+      pieces = new List<Transform>();
+      size = 2;
+      CreateGamePieces(0.01f);
+      Shuffle();
+      isShuffled = true;
+    }
+
     isPuzzleOn = true;
     _puzzleObj.SetActive(true);
 
@@ -84,8 +110,14 @@ public class Puzzle : MonoBehaviour
 
   public void OnHide_puzzle()
   {
+    
     isPuzzleOn = false;
-    _puzzleObj.SetActive(true);
+    OnPuzzleOpened(false);
+    _puzzleObj.SetActive(false);
+    if (!CheckCompletion())
+    {
+      InventoryManager.Instance.EnableDisablePuzzle(currentPuzzletype,true);
+    }
   }
   //if (!shuffling && CheckCompletion()) {
    // shuffling = true;
@@ -99,6 +131,8 @@ public class Puzzle : MonoBehaviour
     if (!shuffling && CheckCompletion())
     {
       Debug.LogError("Game Is Done");
+      InventoryManager.Instance.PuzzleSolved(currentPuzzletype);
+      OnHide_puzzle();
       return;
     }
     // On click send out ray to see if we click a piece.
@@ -118,8 +152,12 @@ public class Puzzle : MonoBehaviour
         }
       }
     }
+
+    if (Input.GetKeyDown(KeyCode.Escape))
+    {
+      OnHide_puzzle();
     }
-    
+    }
   }
 
   // colCheck is used to stop horizontal moves wrapping.

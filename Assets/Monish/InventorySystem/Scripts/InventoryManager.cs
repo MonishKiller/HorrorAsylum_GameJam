@@ -19,7 +19,25 @@ public class InventoryManager : MonoBehaviour
     //Todo Move this to UI_Manager
 
     [SerializeField] private Inventory_Panel inventory_Panel;
+    [SerializeField] private GameObject[] puzzelType;
+    public void EnableDisablePuzzle(int puzzleNo,bool enable)
+    {
+        if (!enable)
+        {
+            puzzelType[puzzleNo].GetComponent<Item_Puzzle>().HideandUnHide(true);
+        }
+        else
+        {
+            puzzelType[puzzleNo].GetComponent<Item_Puzzle>().HideandUnHide(false);
+        }
+        
+    }
 
+    public void PuzzleSolved(int puzzleNo)
+    { 
+        puzzelType[puzzleNo].GetComponent<Item_Puzzle>().PuzzleSolved();
+        
+    }
 
     public void EnableInventory()
     {
