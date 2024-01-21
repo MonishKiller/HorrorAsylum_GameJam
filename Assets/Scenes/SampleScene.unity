@@ -3297,9 +3297,25 @@ PrefabInstance:
       propertyPath: _maxRayDistance
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5169713829865161913, guid: 2d106850646e0564a8dac27aeea6bedb, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5169713829865161913, guid: 2d106850646e0564a8dac27aeea6bedb, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a7dfe75666cf394f89642749027d56b, type: 3}
+    - target: {fileID: 7965952230758899193, guid: 2d106850646e0564a8dac27aeea6bedb, type: 3}
+      propertyPath: _breathingSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: ae64f5f74d3db734b881b9da984e9696, type: 3}
     - target: {fileID: 8255056277648543299, guid: 2d106850646e0564a8dac27aeea6bedb, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302163113678250414, guid: 2d106850646e0564a8dac27aeea6bedb, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d106850646e0564a8dac27aeea6bedb, type: 3}
@@ -4237,7 +4253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2065594584
 Transform:
   m_ObjectHideFlags: 0

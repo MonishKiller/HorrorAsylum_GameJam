@@ -1,46 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player_Audio : MonoBehaviour
 {
 
-    public AudioSource _playerSource;
-    public AudioSource _playerMainSource;
+   public AudioSource _playerSFX;
+    public AudioSource _playerWalk;
+    public AudioSource _playerBreathing;
+    public AudioSource _musicLoop;
     [SerializeField] private AudioClip[] _WalkAudio_SFX;
     [SerializeField] private AudioClip _crushingPaper_SFX;
     [SerializeField] private AudioClip _object_SFX;
+    [SerializeField] private AudioClip[] _breathingSFX;
+    [SerializeField] private AudioClip _musicSFX;
 
 
     private void Start()
     {
-        this._playerSource = this.GetComponent<AudioSource>();
+        this._playerSFX = this.GetComponent<AudioSource>();
+        Play_MusicLoop();
+        Play_BreathingLoop();
     }
 
     public void Player_Audio_Walk(bool isWalking)
     {
         if (isWalking)
-            _playerMainSource.Play();
+            _playerWalk.Play();
         else
-            _playerMainSource.Stop();
+            _playerWalk.Stop();
     }
 
     public void Player_Audio_PickUp_Letter()
     {
-        this._playerSource.Stop();
-        this._playerSource.clip = this._crushingPaper_SFX;
-        this._playerSource.Play();
+        this._playerSFX.Stop();
+        this._playerSFX.clip = this._crushingPaper_SFX;
+        this._playerSFX.Play();
     }
     public void Player_Audio_PicKUp_Object()
     {
-        this._playerSource.Stop();
-        this._playerSource.clip = this._object_SFX;
-        this._playerSource.Play();
+        this._playerSFX.Stop();
+        this._playerSFX.clip = this._object_SFX;
+        this._playerSFX.Play();
 
     }
     public void Player_Audi_Stop()
     {
-        this._playerSource.Stop();
+        this._playerSFX.Stop();
+    }
+
+    public void Play_MusicLoop()
+    {
+        this._musicLoop.clip = this._musicSFX;
+        _musicLoop.Play();
+    }
+
+    public void Play_BreathingLoop()
+    {
+        this._playerBreathing.clip = this._breathingSFX[0];
+        _playerBreathing.Play();
     }
 
     private enum RandomWalk_SFX

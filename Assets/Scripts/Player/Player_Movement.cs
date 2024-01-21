@@ -26,12 +26,12 @@ public class Player_Movement : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
         characterController.Move(move * speed * Time.deltaTime);
 
-        if (move.magnitude > 0 && !this.player_Audio._playerMainSource.isPlaying)
+        if (move.magnitude > 0 && !this.player_Audio._playerWalk.isPlaying)
         {
             // If there's movement and audio is not playing, play the walking sound.
             this.player_Audio.Player_Audio_Walk(true);
         }
-        else if (move.magnitude == 0 && this.player_Audio._playerMainSource.isPlaying)
+        else if (move.magnitude == 0 && this.player_Audio._playerWalk.isPlaying)
         {
             // If there's no movement and audio is playing, stop the walking sound.
             this.player_Audio.Player_Audio_Walk(false);
