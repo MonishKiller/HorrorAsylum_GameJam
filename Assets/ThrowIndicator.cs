@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ThrowIndicator : MonoBehaviour
 {
+    [SerializeField] private AudioSource screamAudio;
     private ThrowObjects[] _allthrowobjects;
     private Transform player; // Assign the player's transform in the Unity Editor
     public float detectionRadius = 5f;
     private bool playerInsideSphere = false;
+    private bool auidoPlayed = false;
 
     private void Start()
     {
@@ -36,8 +39,12 @@ public class ThrowIndicator : MonoBehaviour
             if (!playerInsideSphere)
             {
                 playerInsideSphere = true;
-               Invoke("InvokeThrow",2f); 
-                
+                if (!auidoPlayed)
+                {
+                    this.screamAudio.Play();
+                    Invoke("InvokeThrow", 1f);
+                }
+
             }
         }
         else
