@@ -138,6 +138,11 @@ public class Player_Actions : MonoBehaviour
                 door.UnlockDoor();
                 door.ToggleDoor();
             }
+            else
+            {
+                MainCanvas_UI.Instance.Show_Message("LOCKED");
+            }
+            
         }
       
        

@@ -38,10 +38,11 @@ public class MainCanvas_UI : Singleton<MainCanvas_UI>
 
     public void Show_Message(string message)
     {
-        Debug.Log("Messages is Showing");
         this._defaultMsg_TMP.text = message;
         if (!this._defaultMsg_TMP.gameObject.activeSelf)
             this._defaultMsg_TMP.gameObject.SetActive(true);
+        
+        Invoke("Hide_Message",1f);
 
     }
     public void Hide_Message()
