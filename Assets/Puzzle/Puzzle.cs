@@ -95,9 +95,13 @@ public class Puzzle : MonoBehaviour
 
     if (!isShuffled)
     {
-      piecePrefab = _allPuzzle[puzzleType].transform;
+      foreach (Transform item in gameTransform)
+      {
+        Destroy(item.gameObject);
+      }
+      piecePrefab = _allPuzzle[0].transform;
       pieces = new List<Transform>();
-      size = 3;
+      size = 2;
       CreateGamePieces(0.01f);
       Shuffle();
       isShuffled = true;
@@ -181,7 +185,7 @@ public class Puzzle : MonoBehaviour
         return false;
       }
     }
-
+    isShuffled = false;
     isPuzzleOn = false;
     return true;
   }

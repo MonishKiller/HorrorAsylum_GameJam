@@ -8,6 +8,7 @@ public class Item_Puzzle : MonoBehaviour
     [SerializeField] private int puzzleNo = 0;
     [SerializeField] private Transform transformTarget;
     [SerializeField] private GameObject key;
+    [SerializeField] private AudioSource _audioSource;
 
     public void Item_PickPuzzle()
     {
@@ -28,6 +29,7 @@ public class Item_Puzzle : MonoBehaviour
     public void PuzzleSolved()
     {
         Instantiate(key, this.transform.position,Quaternion.identity);
+        _audioSource.Play();
         Destroy(this.gameObject);
 
     }
