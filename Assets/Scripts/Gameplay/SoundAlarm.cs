@@ -17,11 +17,13 @@ public class SoundAlarm : MonoBehaviour
     
     private Transform player; // Assign the player's transform in the Unity Editor
     public float detectionRadius = 5f;
+    public float playDuration = 3f;
     public ObjectsSounds _currentObjects;
     private bool playerInsideSphere = false;
     private AudioSource _audioSource;
     private bool audioPlayed;
-    
+ 
+
    
     private void Start()
     {
@@ -62,6 +64,7 @@ public class SoundAlarm : MonoBehaviour
         if (!playerInsideSphere && !audioPlayed)
         {
             _audioSource.Play();
+            Invoke("StopAudio", playDuration);
             audioPlayed = true;
 
         }
@@ -72,6 +75,7 @@ public class SoundAlarm : MonoBehaviour
         if (playerInsideSphere && !audioPlayed)
         {
             _audioSource.Play();
+            Invoke("StopAudio", playDuration);
             audioPlayed = true;
         }
         
@@ -81,6 +85,7 @@ public class SoundAlarm : MonoBehaviour
         if (playerInsideSphere && !audioPlayed)
         {
             _audioSource.Play();
+            Invoke("StopAudio", playDuration);
             audioPlayed = true;
         }
         
@@ -107,6 +112,10 @@ public class SoundAlarm : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+    void StopAudio()
+    {
+        _audioSource.Stop();
     }
     void OnDrawGizmos()
     {
