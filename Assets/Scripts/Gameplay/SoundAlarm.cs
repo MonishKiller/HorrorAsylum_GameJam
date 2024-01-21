@@ -22,12 +22,15 @@ public class SoundAlarm : MonoBehaviour
     private bool playerInsideSphere = false;
     private AudioSource _audioSource;
     private bool audioPlayed;
- 
+
+    private Player_Audio _playerAudio;
 
    
     private void Start()
     {
         player = FindObjectOfType<Player_Movement>().transform;
+        _playerAudio = player.GetComponent<Player_Audio>();
+        
         _audioSource = this.gameObject.GetComponent<AudioSource>();
     }
 
@@ -63,9 +66,11 @@ public class SoundAlarm : MonoBehaviour
     {
         if (!playerInsideSphere && !audioPlayed)
         {
+          
             _audioSource.Play();
             Invoke("StopAudio", playDuration);
             audioPlayed = true;
+            _playerAudio.Play_PlayerScared();
 
         }
         
@@ -74,9 +79,12 @@ public class SoundAlarm : MonoBehaviour
     {
         if (playerInsideSphere && !audioPlayed)
         {
+         
             _audioSource.Play();
             Invoke("StopAudio", playDuration);
             audioPlayed = true;
+            _playerAudio.Play_PlayerScared();
+
         }
         
     }
@@ -87,6 +95,8 @@ public class SoundAlarm : MonoBehaviour
             _audioSource.Play();
             Invoke("StopAudio", playDuration);
             audioPlayed = true;
+            _playerAudio.Play_PlayerScared();
+
         }
         
     }
@@ -113,6 +123,8 @@ public class SoundAlarm : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
+
+ 
     void StopAudio()
     {
         _audioSource.Stop();

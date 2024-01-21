@@ -10,6 +10,7 @@ public class Player_Audio : MonoBehaviour
     public AudioSource _playerWalk;
     public AudioSource _playerBreathing;
     public AudioSource _musicLoop;
+    public AudioSource[] _playerScared;
     [SerializeField] private AudioClip[] _WalkAudio_SFX;
     [SerializeField] private AudioClip _crushingPaper_SFX;
     [SerializeField] private AudioClip _object_SFX;
@@ -44,6 +45,23 @@ public class Player_Audio : MonoBehaviour
         this._playerSFX.clip = this._object_SFX;
         this._playerSFX.Play();
 
+    }
+
+    public void Stop_PlayerScared()
+    {
+        for (int i = 0; i < _playerScared.Length; i++)
+        {
+            _playerScared[i].Stop();
+        }
+        
+    }
+    public void Play_PlayerScared()
+    {
+        for (int i = 0; i < _playerScared.Length; i++)
+        {
+            _playerScared[i].Play();
+        }
+        Invoke("Stop_PlayerScared",3f);
     }
     public void Player_Audi_Stop()
     {
