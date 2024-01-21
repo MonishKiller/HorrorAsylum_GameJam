@@ -8,6 +8,7 @@ TagManager:
   - Lights
   - Object
   - Puzzle
+  - Camera1
   layers:
   - Default
   - TransparentFX

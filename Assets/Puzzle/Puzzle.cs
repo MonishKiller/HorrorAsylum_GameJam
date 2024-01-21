@@ -97,7 +97,7 @@ public class Puzzle : MonoBehaviour
     {
       piecePrefab = _allPuzzle[puzzleType].transform;
       pieces = new List<Transform>();
-      size = 2;
+      size = 3;
       CreateGamePieces(0.01f);
       Shuffle();
       isShuffled = true;

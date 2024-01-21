@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using GameEnum;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Actions : MonoBehaviour
 {
@@ -45,7 +46,8 @@ public class Player_Actions : MonoBehaviour
         _ray2 = _mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(_ray2, out _hit, _maxRayDistance))
         {
-           if (_hit.collider.gameObject.CompareTag("Door")||_hit.collider.gameObject.CompareTag("Object")||_hit.collider.gameObject.CompareTag("Puzzle"))
+           if (_hit.collider.gameObject.CompareTag("Door")||_hit.collider.gameObject.CompareTag("Object")||_hit.collider.gameObject.CompareTag("Puzzle")
+               ||_hit.collider.gameObject.CompareTag("Camera1"))
            {
                 MainCanvas_UI.Instance.Show_Helper();
            }
@@ -91,6 +93,10 @@ public class Player_Actions : MonoBehaviour
             {
                 MainCanvas_UI.Instance.Hide_Helper();
                 TogglePuzzle(_hit.collider.gameObject);
+            }
+            if (_hit.collider.gameObject.CompareTag("Camera1"))
+            {
+               ToggleEnd(_hit.collider.gameObject);
             }
             
          
@@ -146,6 +152,11 @@ public class Player_Actions : MonoBehaviour
         }
       
        
+    }
+
+    private void ToggleEnd(GameObject go)
+    {
+        go.GetComponent<Item_Camera>().OnEndScreen();
     }
     private void TogglePuzzle(GameObject go)
     {
