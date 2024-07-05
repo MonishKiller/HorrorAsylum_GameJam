@@ -61,6 +61,7 @@ public class MainCamera : MonoBehaviour
         {
             if (_hit.collider.gameObject.TryGetComponent(out IInteractable interactable))
             {
+                //If the Object is Interactable Show the Helper
                 MainCanvas_UI.Instance.Show_Helper();
             }
             else
