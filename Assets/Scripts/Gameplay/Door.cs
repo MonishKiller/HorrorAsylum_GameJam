@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameEnum;
+using GameEnum.Templates;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour,IInteractable
 {
     private bool isOpen = false;
     private AudioSource doorAudioSouce;
@@ -67,4 +68,34 @@ public class Door : MonoBehaviour
 
     }
 
+    public void Interact()
+    {
+        CheckDoorAndInteract();
+    }
+    
+    void CheckDoorAndInteract()
+    {
+        if (this.isUnlocked)
+        {
+            this.ToggleDoor();
+        }
+        else
+        {
+            if (this._doorType == keyType.None)
+            {
+                this.UnlockDoor();
+                this.ToggleDoor();
+            }
+            if (InventoryManager.Instance.CheckKeyAvailable(this._doorType))
+            {
+                this.UnlockDoor();
+                this.ToggleDoor();
+            }
+            else
+            {
+                MainCanvas_UI.Instance.Show_Message("LOCKED");
+            }
+            
+        }
+    }
 }

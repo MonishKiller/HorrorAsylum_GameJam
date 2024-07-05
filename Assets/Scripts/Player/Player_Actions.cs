@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameEnum;
+using GameEnum.Templates;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public class Player_Actions : MonoBehaviour
     Ray _ray = new Ray();
     Ray _ray2 = new Ray();
     RaycastHit _hit;
+    
     private Door door = new Door();
     private Lights_Environment lights = new Lights_Environment();
     private Player_Audio _player_Audio;
@@ -81,40 +83,11 @@ public class Player_Actions : MonoBehaviour
         // Perform the raycast.
         if (Physics.Raycast(_ray, out _hit, _maxRayDistance))
         {
-            if (_hit.collider.gameObject.CompareTag("Door"))
+            if (_hit.collider.TryGetComponent(out IInteractable interactable))
             {
-                ToggleDoor(_hit.collider.gameObject);
-            }
-            if (_hit.collider.gameObject.CompareTag("Object"))
-            {
-                 ToggleObject(_hit.collider.gameObject);
-            }
-            if (_hit.collider.gameObject.CompareTag("Puzzle"))
-            {
-                MainCanvas_UI.Instance.Hide_Helper();
-                TogglePuzzle(_hit.collider.gameObject);
-            }
-            if (_hit.collider.gameObject.CompareTag("Camera1"))
-            {
-               ToggleEnd(_hit.collider.gameObject);
-            }
-            
-         
+                interactable.Interact();
+            }         
         }
-        /*
-        if (_hit.collider.gameObject.CompareTag("Lights"))
-        {
-            ToggleLights(_hit.collider.gameObject);
-        }
-        if (_hit.collider.gameObject.CompareTag("Letter"))
-        {
-            PickLetter(_hit.collider.gameObject);
-        }
-        if (_hit.collider.gameObject.CompareTag("Candle"))
-        {
-            PickLetter(_hit.collider.gameObject);
-        }
-        */
     }
     private void PickCandle()
     {
@@ -153,20 +126,7 @@ public class Player_Actions : MonoBehaviour
       
        
     }
-
-    private void ToggleEnd(GameObject go)
-    {
-        go.GetComponent<Item_Camera>().OnEndScreen();
-    }
-    private void TogglePuzzle(GameObject go)
-    {
-        go.GetComponent<Item_Puzzle>().Item_PickPuzzle();
-    }
-    private void ToggleObject(GameObject go)
-    {
-        _player_Audio.Player_Audio_PicKUp_Object();
-         go.GetComponent<Item_PickUp>().ItemPicked();
-    }
+    
     private void ToggleLights(GameObject go)
     {
         _player_Audio.Player_Audio_PicKUp_Object();
